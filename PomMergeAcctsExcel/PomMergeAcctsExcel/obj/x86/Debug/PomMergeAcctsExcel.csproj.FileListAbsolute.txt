@@ -1,0 +1,10 @@
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\obj\x86\Debug\PomMergeAcctsExcel.Properties.Resources.resources
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\obj\x86\Debug\PomMergeAcctsExcel.csproj.GenerateResource.Cache
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\bin\Debug\PomMergeAcctsExcel.exe
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\bin\Debug\PomMergeAcctsExcel.pdb
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\bin\Debug\NPOI.xml
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\obj\x86\Debug\PomMergeAcctsExcel.exe
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\obj\x86\Debug\PomMergeAcctsExcel.pdb
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\obj\x86\Debug\PomMergeAcctsExcel.csprojResolveAssemblyReference.cache
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\obj\x86\Debug\PomMergeAcctsExcel.MainForm.resources
+C:\Users\cyang\git\vs-projects\PomMergeAcctsExcel\PomMergeAcctsExcel\bin\Debug\PomMergeAcctsExcel.exe.config
