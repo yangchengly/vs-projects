@@ -86,16 +86,5 @@ namespace PomMergeAcctsExcel
 
             pb1.Value = 0;
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Contact contact = new Contact();
-            foreach (System.Reflection.PropertyInfo prop in contact.GetType().GetProperties())
-            {
-                Console.WriteLine(prop.Name);
-
-                prop.SetValue
-            }
-        }
     }
 }

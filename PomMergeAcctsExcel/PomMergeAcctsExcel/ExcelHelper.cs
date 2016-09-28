@@ -53,35 +53,42 @@ namespace PomMergeAcctsExcel
                     if (row == null)
                         break;
 
-                    Contact contact = new Contact()
+                    Contact contact = new Contact();
+                    System.Reflection.PropertyInfo[] props = contact.GetType().GetProperties();
+                    for (int j = 0; j < 26; j++)
                     {
-                        id = row.GetCell(0) != null ? row.GetCell(0).ToString() : "",
-                        custNo = row.GetCell(1) != null ? row.GetCell(1).ToString() : "",
-                        cardHolder = row.GetCell(2) != null ? row.GetCell(2).ToString() : "",
-                        sex = row.GetCell(3) != null ? row.GetCell(3).ToString() : "",
-                        mvNo = row.GetCell(4) != null ? row.GetCell(4).ToString() : "",
-                        daAcCnt = row.GetCell(5) != null ? row.GetCell(5).ToString() : "",
-                        acNo = row.GetCell(6) != null ? row.GetCell(6).ToString() : "",
-                        acTyp = row.GetCell(7) != null ? row.GetCell(7).ToString() : "",
-                        cycle = row.GetCell(8) != null ? row.GetCell(8).ToString() : "",
-                        lastStmtDte = row.GetCell(9) != null ? row.GetCell(9).ToString() : "",
-                        duedate = row.GetCell(10) != null ? row.GetCell(10).ToString() : "",
-                        stmtBalR = row.GetCell(11) != null ? row.GetCell(11).ToString() : "",
-                        stmtBalU = row.GetCell(12) != null ? row.GetCell(12).ToString() : "",
-                        totBalR = row.GetCell(13) != null ? row.GetCell(13).ToString() : "",
-                        totBalU = row.GetCell(14) != null ? row.GetCell(14).ToString() : "",
-                        pastDueR = row.GetCell(15) != null ? row.GetCell(15).ToString() : "",
-                        pastDueU = row.GetCell(16) != null ? row.GetCell(16).ToString() : "",
-                        totR = row.GetCell(17) != null ? row.GetCell(17).ToString() : "",
-                        delqDays = row.GetCell(18) != null ? row.GetCell(18).ToString() : "",
-                        afeeFlag = row.GetCell(19) != null ? row.GetCell(19).ToString() : "",
-                        pfeeFlag = row.GetCell(20) != null ? row.GetCell(20).ToString() : "",
-                        collId = row.GetCell(21) != null ? row.GetCell(21).ToString() : "",
-                        coll = row.GetCell(22) != null ? row.GetCell(22).ToString() : "",
-                        arDate = row.GetCell(23) != null ? row.GetCell(23).ToString() : "",
-                        arTime = row.GetCell(24) != null ? row.GetCell(24).ToString() : "",
-                        arPayment = row.GetCell(25) != null ? row.GetCell(25).ToString() : ""
-                    };
+                        props[j].SetValue(contact, row.GetCell(j) != null ? row.GetCell(j).ToString() : "", null);
+                    }
+
+                    //Contact contact = new Contact()
+                    //{
+                    //    id = row.GetCell(0) != null ? row.GetCell(0).ToString() : "",
+                    //    custNo = row.GetCell(1) != null ? row.GetCell(1).ToString() : "",
+                    //    cardHolder = row.GetCell(2) != null ? row.GetCell(2).ToString() : "",
+                    //    sex = row.GetCell(3) != null ? row.GetCell(3).ToString() : "",
+                    //    mvNo = row.GetCell(4) != null ? row.GetCell(4).ToString() : "",
+                    //    daAcCnt = row.GetCell(5) != null ? row.GetCell(5).ToString() : "",
+                    //    acNo = row.GetCell(6) != null ? row.GetCell(6).ToString() : "",
+                    //    acTyp = row.GetCell(7) != null ? row.GetCell(7).ToString() : "",
+                    //    cycle = row.GetCell(8) != null ? row.GetCell(8).ToString() : "",
+                    //    lastStmtDte = row.GetCell(9) != null ? row.GetCell(9).ToString() : "",
+                    //    duedate = row.GetCell(10) != null ? row.GetCell(10).ToString() : "",
+                    //    stmtBalR = row.GetCell(11) != null ? row.GetCell(11).ToString() : "",
+                    //    stmtBalU = row.GetCell(12) != null ? row.GetCell(12).ToString() : "",
+                    //    totBalR = row.GetCell(13) != null ? row.GetCell(13).ToString() : "",
+                    //    totBalU = row.GetCell(14) != null ? row.GetCell(14).ToString() : "",
+                    //    pastDueR = row.GetCell(15) != null ? row.GetCell(15).ToString() : "",
+                    //    pastDueU = row.GetCell(16) != null ? row.GetCell(16).ToString() : "",
+                    //    totR = row.GetCell(17) != null ? row.GetCell(17).ToString() : "",
+                    //    delqDays = row.GetCell(18) != null ? row.GetCell(18).ToString() : "",
+                    //    afeeFlag = row.GetCell(19) != null ? row.GetCell(19).ToString() : "",
+                    //    pfeeFlag = row.GetCell(20) != null ? row.GetCell(20).ToString() : "",
+                    //    collId = row.GetCell(21) != null ? row.GetCell(21).ToString() : "",
+                    //    coll = row.GetCell(22) != null ? row.GetCell(22).ToString() : "",
+                    //    arDate = row.GetCell(23) != null ? row.GetCell(23).ToString() : "",
+                    //    arTime = row.GetCell(24) != null ? row.GetCell(24).ToString() : "",
+                    //    arPayment = row.GetCell(25) != null ? row.GetCell(25).ToString() : ""
+                    //};
 
                     if (!dic.ContainsKey(contact.custNo))
                     {
@@ -89,30 +96,47 @@ namespace PomMergeAcctsExcel
                     }
                     else
                     {
-                        Contact contactInDic = dic[contact.custNo];                        
+                        Contact contactInDic = dic[contact.custNo];
 
-                        contactInDic.acNo = contactInDic.acNo + SEPERATOR + contact.acNo;
-                        contactInDic.acTyp = contactInDic.acTyp + SEPERATOR + contact.acTyp;
-                        contactInDic.lastStmtDte = contactInDic.lastStmtDte + SEPERATOR + contact.lastStmtDte;
-                        contactInDic.duedate = contactInDic.duedate + SEPERATOR + contact.duedate;
-                        contactInDic.stmtBalR = contactInDic.stmtBalR + SEPERATOR + contact.stmtBalR;
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
-                        contactInDic.totBalR = contactInDic.totBalR + SEPERATOR + contact.totBalR;
-                        contactInDic.totBalU = contactInDic.totBalU + SEPERATOR + contact.totBalU;
-                        contactInDic.pastDueR = contactInDic.pastDueR + SEPERATOR + contact.pastDueR;
-                        contactInDic.pastDueU = contactInDic.pastDueU + SEPERATOR + contact.pastDueU;
-                        contactInDic.totR = contactInDic.totR + SEPERATOR + contact.totR;
-                        contactInDic.delqDays = contactInDic.delqDays + SEPERATOR + contact.delqDays;
-                        contactInDic.afeeFlag = contactInDic.afeeFlag + SEPERATOR + contact.afeeFlag;
-                        contactInDic.pfeeFlag = contactInDic.pfeeFlag + SEPERATOR + contact.pfeeFlag;
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        System.Reflection.PropertyInfo[] propsInDic = contactInDic.GetType().GetProperties();
+                        int size = propsInDic.Length;
+                        for (int k = 0; k < size; k++)
+                        {
+                            String valueInDic = (String)propsInDic[k].GetValue(contactInDic, null);
+                            String value = (String)props[k].GetValue(contact, null);
+                            if (valueInDic.Equals(value))
+                                continue;
+                            else
+                            {
+                                if (propsInDic[k].Name.Equals("id"))
+                                    continue;
+                                else
+                                    propsInDic[k].SetValue(contactInDic, propsInDic[k].GetValue(contactInDic, null) + SEPERATOR + props[k].GetValue(contact, null), null);
+                            }
+                        }
 
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
-                        contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        //contactInDic.acNo = contactInDic.acNo + SEPERATOR + contact.acNo;
+                        //contactInDic.acTyp = contactInDic.acTyp + SEPERATOR + contact.acTyp;
+                        //contactInDic.lastStmtDte = contactInDic.lastStmtDte + SEPERATOR + contact.lastStmtDte;
+                        //contactInDic.duedate = contactInDic.duedate + SEPERATOR + contact.duedate;
+                        //contactInDic.stmtBalR = contactInDic.stmtBalR + SEPERATOR + contact.stmtBalR;
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        //contactInDic.totBalR = contactInDic.totBalR + SEPERATOR + contact.totBalR;
+                        //contactInDic.totBalU = contactInDic.totBalU + SEPERATOR + contact.totBalU;
+                        //contactInDic.pastDueR = contactInDic.pastDueR + SEPERATOR + contact.pastDueR;
+                        //contactInDic.pastDueU = contactInDic.pastDueU + SEPERATOR + contact.pastDueU;
+                        //contactInDic.totR = contactInDic.totR + SEPERATOR + contact.totR;
+                        //contactInDic.delqDays = contactInDic.delqDays + SEPERATOR + contact.delqDays;
+                        //contactInDic.afeeFlag = contactInDic.afeeFlag + SEPERATOR + contact.afeeFlag;
+                        //contactInDic.pfeeFlag = contactInDic.pfeeFlag + SEPERATOR + contact.pfeeFlag;
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
+                        //contactInDic.stmtBalU = contactInDic.stmtBalU + SEPERATOR + contact.stmtBalU;
                     }
 
                     this.form1.pb1.Value = i * 50 / iLastRowNum;
@@ -144,36 +168,43 @@ namespace PomMergeAcctsExcel
             int length = dic.Count;
 
             int i = 0;
-            foreach (var value in dic.Values)
+            foreach (var contact in dic.Values)
             {
                 IRow row = sheet.CreateRow(i++);
 
-                row.CreateCell(0).SetCellValue(value.id);
-                row.CreateCell(1).SetCellValue(value.custNo);
-                row.CreateCell(2).SetCellValue(value.cardHolder);
-                row.CreateCell(3).SetCellValue(value.sex);
-                row.CreateCell(4).SetCellValue(value.mvNo);
-                row.CreateCell(5).SetCellValue(value.daAcCnt);
-                row.CreateCell(6).SetCellValue(value.acNo);
-                row.CreateCell(7).SetCellValue(value.acTyp);
-                row.CreateCell(8).SetCellValue(value.cycle);
-                row.CreateCell(9).SetCellValue(value.lastStmtDte);
-                row.CreateCell(10).SetCellValue(value.duedate);
-                row.CreateCell(11).SetCellValue(value.stmtBalR);
-                row.CreateCell(12).SetCellValue(value.stmtBalU);
-                row.CreateCell(13).SetCellValue(value.totBalR);
-                row.CreateCell(14).SetCellValue(value.totBalU);
-                row.CreateCell(15).SetCellValue(value.pastDueR);
-                row.CreateCell(16).SetCellValue(value.pastDueU);
-                row.CreateCell(17).SetCellValue(value.totR);
-                row.CreateCell(18).SetCellValue(value.delqDays);
-                row.CreateCell(19).SetCellValue(value.afeeFlag);
-                row.CreateCell(20).SetCellValue(value.pfeeFlag);
-                row.CreateCell(21).SetCellValue(value.collId);
-                row.CreateCell(22).SetCellValue(value.coll);
-                row.CreateCell(23).SetCellValue(value.arDate);
-                row.CreateCell(24).SetCellValue(value.arTime);
-                row.CreateCell(25).SetCellValue(value.arPayment);
+                System.Reflection.PropertyInfo[] props = contact.GetType().GetProperties();
+
+                for (int j = 0; j < 26; j++)
+                {
+                    row.CreateCell(j).SetCellValue((String)props[j].GetValue(contact, null));
+                }
+
+                //row.CreateCell(0).SetCellValue(contact.id);
+                //row.CreateCell(1).SetCellValue(contact.custNo);
+                //row.CreateCell(2).SetCellValue(contact.cardHolder);
+                //row.CreateCell(3).SetCellValue(contact.sex);
+                //row.CreateCell(4).SetCellValue(contact.mvNo);
+                //row.CreateCell(5).SetCellValue(contact.daAcCnt);
+                //row.CreateCell(6).SetCellValue(contact.acNo);
+                //row.CreateCell(7).SetCellValue(contact.acTyp);
+                //row.CreateCell(8).SetCellValue(contact.cycle);
+                //row.CreateCell(9).SetCellValue(contact.lastStmtDte);
+                //row.CreateCell(10).SetCellValue(contact.duedate);
+                //row.CreateCell(11).SetCellValue(contact.stmtBalR);
+                //row.CreateCell(12).SetCellValue(contact.stmtBalU);
+                //row.CreateCell(13).SetCellValue(contact.totBalR);
+                //row.CreateCell(14).SetCellValue(contact.totBalU);
+                //row.CreateCell(15).SetCellValue(contact.pastDueR);
+                //row.CreateCell(16).SetCellValue(contact.pastDueU);
+                //row.CreateCell(17).SetCellValue(contact.totR);
+                //row.CreateCell(18).SetCellValue(contact.delqDays);
+                //row.CreateCell(19).SetCellValue(contact.afeeFlag);
+                //row.CreateCell(20).SetCellValue(contact.pfeeFlag);
+                //row.CreateCell(21).SetCellValue(contact.collId);
+                //row.CreateCell(22).SetCellValue(contact.coll);
+                //row.CreateCell(23).SetCellValue(contact.arDate);
+                //row.CreateCell(24).SetCellValue(contact.arTime);
+                //row.CreateCell(25).SetCellValue(contact.arPayment);
 
                 this.form1.pb1.Value = 50 + i * 50 / dic.Count;
             }
